@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { RowValues, PlaceValue, OperationMode, BoardOrientation, ThemeMode } from '../types';
 import { HeartPocket } from './HeartPocket';
 import { SoalNotepad } from './SoalNotepad';
@@ -48,6 +48,18 @@ export const BoardMatrix: React.FC<BoardMatrixProps> = ({
 }) => {
   const [dragOverKey, setDragOverKey] = useState<string | null>(null);
   const isDark = themeMode === 'dark';
+
+  useEffect(() => {
+    const handleCustomDragHover = (e: Event) => {
+      const customEvent = e as CustomEvent<{ pocketKey: string | null }>;
+      setDragOverKey(customEvent.detail?.pocketKey || null);
+    };
+
+    window.addEventListener('digijurang:draghover', handleCustomDragHover);
+    return () => {
+      window.removeEventListener('digijurang:draghover', handleCustomDragHover);
+    };
+  }, []);
 
   const val1 = row1.ratusan * 100 + row1.puluhan * 10 + row1.satuan;
   const val2 = row2.ratusan * 100 + row2.puluhan * 10 + row2.satuan;

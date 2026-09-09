@@ -79,11 +79,15 @@ export const HeartPocket: React.FC<HeartPocketProps> = ({
 
   return (
     <div
+      data-pocket-key={`row${rowNumber}-${type}`}
+      data-pocket-row={rowNumber}
+      data-pocket-type={type}
+      data-pocket-interactive={isInteractive ? 'true' : 'false'}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
       className={`relative flex flex-col items-center select-none transition-all duration-150 ${
-        isOver ? 'scale-105' : ''
+        isOver ? 'scale-105 filter drop-shadow-xl' : ''
       }`}
     >
       {/* Straws peaking out of the pocket opening with clear spacing */}
@@ -120,8 +124,8 @@ export const HeartPocket: React.FC<HeartPocketProps> = ({
 
       {/* Main Pocket Body (Shaped like denim stitched pocket in reference photo) */}
       <div
-        className={`relative w-full ${theme.pocketBg} border ${theme.pocketBorder} rounded-b-xl sm:rounded-b-2xl rounded-t-sm sm:rounded-t-md p-1.5 sm:p-2.5 shadow-md flex flex-col items-center justify-between min-h-[82px] sm:min-h-[95px] z-10 ${
-          isOver ? 'ring-2 ring-yellow-300' : ''
+        className={`relative w-full ${theme.pocketBg} border ${theme.pocketBorder} rounded-b-xl sm:rounded-b-2xl rounded-t-sm sm:rounded-t-md p-1.5 sm:p-2.5 shadow-md flex flex-col items-center justify-between min-h-[82px] sm:min-h-[95px] z-10 transition-all ${
+          isOver ? 'ring-4 ring-yellow-400 ring-offset-2 scale-105 shadow-2xl brightness-110' : ''
         }`}
         style={{
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%)'
