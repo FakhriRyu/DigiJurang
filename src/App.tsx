@@ -33,7 +33,7 @@ export const App: React.FC = () => {
       const saved = localStorage.getItem('digijurang_theme');
       if (saved === 'light' || saved === 'dark') return saved;
     }
-    return 'dark';
+    return 'light';
   });
 
   const [hasMerged, setHasMerged] = useState<boolean>(false);
