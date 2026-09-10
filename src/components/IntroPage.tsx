@@ -112,6 +112,9 @@ export const IntroPage: React.FC<IntroPageProps> = ({
           <p className={`text-xs sm:text-sm font-bold font-fun ${isDark ? 'text-amber-200' : 'text-amber-800'}`}>
             Digital Papan Penjumlahan & Pengurangan Nilai Tempat (DIGI JURANG)
           </p>
+          <p className={`text-xs font-bold font-fun ${isDark ? 'text-sky-300' : 'text-sky-700'}`}>
+            Karya: Lesti Dwi Putri, S.Pd.
+          </p>
         </div>
 
         {/* Content Sections */}
@@ -124,15 +127,28 @@ export const IntroPage: React.FC<IntroPageProps> = ({
                 : 'bg-amber-50/70 border-amber-200 text-slate-900'
             }`}
           >
-            <div
-              className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-fun font-black tracking-wider border ${
-                isDark
-                  ? 'bg-amber-400/20 text-amber-300 border-amber-400/40'
-                  : 'bg-amber-200 text-amber-950 border-amber-300'
-              }`}
-            >
-              <span>🌈</span>
-              <span>MEDIA PEMBELAJARAN MATEMATIKA SD</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div
+                className={`inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-fun font-black tracking-wider border ${
+                  isDark
+                    ? 'bg-amber-400/20 text-amber-300 border-amber-400/40'
+                    : 'bg-amber-200 text-amber-950 border-amber-300'
+                }`}
+              >
+                <span>🌈</span>
+                <span>MEDIA PEMBELAJARAN MATEMATIKA SD</span>
+              </div>
+
+              <div
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-fun font-bold border ${
+                  isDark
+                    ? 'bg-sky-400/20 text-sky-300 border-sky-400/40'
+                    : 'bg-sky-100 text-sky-950 border-sky-300'
+                }`}
+              >
+                <span>👩‍🏫</span>
+                <span>Oleh: <strong>Lesti Dwi Putri, S.Pd.</strong></span>
+              </div>
             </div>
 
             <h2 className={`text-xl sm:text-2xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
@@ -377,6 +393,49 @@ export const IntroPage: React.FC<IntroPageProps> = ({
               <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 Petunjuk langkah demi langkah, peran guru dan siswa, serta panduan fitur interaktif di kelas.
               </p>
+            </div>
+          </div>
+
+          {/* 4. Profil Pengembang Media */}
+          <div
+            className={`p-4 sm:p-5 rounded-2xl sm:rounded-3xl border shadow-md flex items-center justify-between flex-wrap gap-4 transition-colors ${
+              isDark
+                ? 'bg-[#282B30] border-white/10 text-white'
+                : 'bg-gradient-to-r from-amber-50/80 to-sky-50/80 border-amber-200 text-slate-900'
+            }`}
+          >
+            <div className="flex items-center gap-3.5">
+              <div
+                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center text-2xl border shadow-xs shrink-0 ${
+                  isDark ? 'bg-sky-500/20 border-sky-400/40 text-white' : 'bg-white border-sky-200 text-slate-900'
+                }`}
+              >
+                👩‍🏫
+              </div>
+              <div>
+                <span className={`text-[11px] font-bold uppercase tracking-wider block ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>
+                  Pengembang / Inovator Media
+                </span>
+                <h3 className="text-base sm:text-lg font-black font-fun">
+                  Lesti Dwi Putri, S.Pd.
+                </h3>
+                <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                  Inovasi Media Pembelajaran Interaktif Nilai Tempat Bilangan Sekolah Dasar
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-fun font-bold border flex items-center gap-1.5 shadow-xs ${
+                  isDark
+                    ? 'bg-amber-400/20 text-amber-300 border-amber-400/40'
+                    : 'bg-white text-amber-950 border-amber-300'
+                }`}
+              >
+                <span>✨</span>
+                <span>DIGI JURANG</span>
+              </span>
             </div>
           </div>
         </div>
