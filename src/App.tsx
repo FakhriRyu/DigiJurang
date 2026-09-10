@@ -9,6 +9,7 @@ import { PlaceValueConcept } from './components/PlaceValueConcept';
 import { IntroPage } from './components/IntroPage';
 import { KeteranganPage } from './components/KeteranganPage';
 import { sound } from './utils/sound';
+import { music } from './utils/music';
 
 export const App: React.FC = () => {
   // Default initial pocket straw values: 0
@@ -45,6 +46,11 @@ export const App: React.FC = () => {
   const [voiceEnabled, setVoiceEnabled] = useState<boolean>(true);
 
   const isDark = themeMode === 'dark';
+
+  useEffect(() => {
+    // Start background music automatically on website load
+    music.startAutoplay();
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

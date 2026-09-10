@@ -237,7 +237,6 @@ export class MusicEngine {
 
   constructor() {
     if (typeof window !== 'undefined') {
-      const savedMuted = localStorage.getItem('digijurang_music_muted');
       const savedTrack = localStorage.getItem('digijurang_music_track');
       const savedVol = localStorage.getItem('digijurang_music_vol');
 
@@ -249,9 +248,6 @@ export class MusicEngine {
         if (!isNaN(v) && v >= 0 && v <= 1) {
           this.volume = v;
         }
-      }
-      if (savedMuted === 'true') {
-        this.isPlaying = false;
       }
     }
   }
@@ -417,6 +413,27 @@ export class MusicEngine {
     this.scheduler();
     this.notify();
     this.saveState();
+  }
+
+  public startAutoplay() {
+    this.play();
+
+    const unlockAudio = () => {
+      if (this.ctx && this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+      if (!this.isPlaying) {
+        this.play();
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('click', unlockAudio, { once: true });
+      window.addEventListener('touchstart', unlockAudio, { once: true });
+      window.addEventListener('pointerdown', unlockAudio, { once: true });
+      window.addEventListener('keydown', unlockAudio, { once: true });
+      window.addEventListener('scroll', unlockAudio, { once: true });
+    }
   }
 
   public pause() {
