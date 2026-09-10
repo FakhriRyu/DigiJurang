@@ -464,7 +464,7 @@ export const IntroPage: React.FC<IntroPageProps> = ({
                 <ArrowRight className="w-4 h-4 text-sky-500 group-hover:translate-x-1 transition-transform" />
               </h3>
               <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                Pelajari konsep pengurangan, nilai tempat, pengurangan bersusun tanpa meminjam & dengan meminjam.
+                Pelajari konsep penjumlahan & pengurangan, nilai tempat, teknik tanpa menyimpan/meminjam, serta dengan menyimpan/meminjam.
               </p>
             </div>
 
