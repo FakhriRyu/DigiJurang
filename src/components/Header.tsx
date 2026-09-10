@@ -2,6 +2,7 @@ import React from 'react';
 import type { ViewTab, BoardOrientation, ThemeMode } from '../types';
 import { sound } from '../utils/sound';
 import { Logo } from './Logo';
+import { MusicPlayer } from './MusicPlayer';
 import {
   Volume2,
   VolumeX,
@@ -120,8 +121,11 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Quick Action Controls on Mobile (Theme, Orientation, Sound, Voice) */}
+          {/* Quick Action Controls on Mobile (Music, Theme, Orientation, Sound, Voice) */}
           <div className="flex md:hidden items-center gap-1">
+            {/* Background Music Player */}
+            <MusicPlayer themeMode={themeMode} />
+
             {/* Light / Dark Mode Toggle */}
             <button
               type="button"
@@ -233,8 +237,11 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Desktop Global Controls: Theme, Orientation, Audio, Voice */}
+        {/* Desktop Global Controls: Music, Theme, Orientation, Audio, Voice */}
         <div className="hidden md:flex items-center gap-1.5">
+          {/* Background Music Player */}
+          <MusicPlayer themeMode={themeMode} />
+
           {/* Light / Dark Mode Switcher */}
           <button
             type="button"
