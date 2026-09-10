@@ -4,7 +4,6 @@ import { sound } from '../utils/sound';
 import { StrawGraphic } from './StrawGraphic';
 import {
   ArrowRight,
-  Target,
   Sparkles,
   LayoutGrid,
   Lightbulb,
@@ -184,118 +183,7 @@ export const IntroPage: React.FC<IntroPageProps> = ({
             </div>
           </div>
 
-          {/* 2. Tujuan Pembelajaran */}
-          <div
-            className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-4 transition-colors ${
-              isDark
-                ? 'bg-[#282B30] border-white/10 text-white'
-                : 'bg-emerald-50/60 border-emerald-200 text-slate-900'
-            }`}
-          >
-            <div className="flex items-center gap-3 pb-3 border-b border-white/10">
-              <div
-                className={`w-9 h-9 rounded-xl border flex items-center justify-center font-bold ${
-                  isDark
-                    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/40'
-                    : 'bg-emerald-200 text-emerald-950 border-emerald-400'
-                }`}
-              >
-                <Target className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className={`text-lg sm:text-xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Tujuan Pembelajaran
-                </h2>
-                <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Capaian kompetensi yang dituju dalam media DIGI JURANG
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-              <div
-                className={`p-4 rounded-2xl border flex items-start gap-3 transition-colors ${
-                  isDark
-                    ? 'bg-[#1F2125] border-white/5'
-                    : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-7 h-7 rounded-xl bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                  1
-                </div>
-                <div className="space-y-1">
-                  <h3 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                    Memahami Hakikat Nilai Tempat
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                    Siswa mampu membedakan dan menentukan nilai suatu angka pada posisi <strong>Ratusan (100)</strong>, <strong>Puluhan (10)</strong>, dan <strong>Satuan (1)</strong> pada bilangan hingga 1.000.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border flex items-start gap-3 transition-colors ${
-                  isDark
-                    ? 'bg-[#1F2125] border-white/5'
-                    : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-7 h-7 rounded-xl bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                  2
-                </div>
-                <div className="space-y-1">
-                  <h3 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                    Representasi Manipulatif Konkret
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                    Siswa dapat menyatakan bilangan menggunakan media konkret sedotan di mana 1 sedotan bernilai sesuai kantong penempatannya.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border flex items-start gap-3 transition-colors ${
-                  isDark
-                    ? 'bg-[#1F2125] border-white/5'
-                    : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-7 h-7 rounded-xl bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                  3
-                </div>
-                <div className="space-y-1">
-                  <h3 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                    Penguasaan Pengurangan dengan Meminjam
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                    Siswa memahami konsep pertukaran nilai: <strong>1 puluhan ditukar menjadi 10 satuan</strong> atau <strong>1 ratusan ditukar menjadi 10 puluhan</strong> saat bilangan yang dikurangi tidak cukup.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border flex items-start gap-3 transition-colors ${
-                  isDark
-                    ? 'bg-[#1F2125] border-white/5'
-                    : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-7 h-7 rounded-xl bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs shrink-0 mt-0.5 shadow-xs">
-                  4
-                </div>
-                <div className="space-y-1">
-                  <h3 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                    Pembuktian Hasil secara Mandiri
-                  </h3>
-                  <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                    Siswa dapat membilang dan membuktikan sendiri kebenaran total hasil perhitungan sedotan pada Meja Pembuktian (*Concrete Proof*).
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 3. Pengantar Konsep Nilai Tempat (Contoh: 735) */}
+          {/* 2. Pengantar Konsep Nilai Tempat (Contoh: 735) */}
           <div
             className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-4 transition-colors ${
               isDark

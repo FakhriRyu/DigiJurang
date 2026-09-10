@@ -2,7 +2,6 @@ import React from 'react';
 import type { ThemeMode } from '../types';
 import { sound } from '../utils/sound';
 import {
-  Target,
   Layers,
   Sparkles,
   CheckCircle2,
@@ -163,134 +162,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
             </div>
           </div>
 
-          {/* 2. Tujuan Pembelajaran (Capaian Pembelajaran) */}
-          <div
-            className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-4 transition-colors ${
-              isDark
-                ? 'bg-[#282B30] border-white/10 text-white'
-                : 'bg-emerald-50/60 border-emerald-200 text-slate-900'
-            }`}
-          >
-            <div className="flex items-center gap-3 pb-3 border-b border-white/10">
-              <div
-                className={`w-9 h-9 rounded-xl border flex items-center justify-center font-bold ${
-                  isDark
-                    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/40'
-                    : 'bg-emerald-200 text-emerald-950 border-emerald-400'
-                }`}
-              >
-                <Target className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className={`text-lg sm:text-xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  2. Tujuan Pembelajaran (TP)
-                </h2>
-                <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Kompetensi yang diharapkan dicapai siswa setelah berinteraksi dengan media DIGI JURANG
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-1">
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  1
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Memahami Nilai Tempat Bilangan
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa dapat mengidentifikasi letak dan nilai suatu angka dalam bilangan cacah hingga 1.000: <strong>Satuan</strong> (1), <strong>Puluhan</strong> (10), dan <strong>Ratusan</strong> (100).
-                </p>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  2
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Representasi Manipulatif Sedotan
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa memahami bahwa sebatang sedotan bernilai konkret sesuai kantong tempatnya berada (1 batang di Ratusan = 100, Puluhan = 10, Satuan = 1).
-                </p>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  3
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Operasi Penjumlahan Bersusun
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa memahami proses penjumlahan sebagai kegiatan mengumpulkan dan menggabungkan sedotan dari Kotak 1 dan Kotak 2 ke dalam Kotak Hasil.
-                </p>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  4
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Pengurangan Tanpa Meminjam
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa dapat menyelesaikan pengurangan ketika setiap digit bilangan pertama mencukupi untuk dikurangi oleh digit bilangan kedua.
-                </p>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  5
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Pengurangan dengan Meminjam
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa menguasai konsep pertukaran nilai: <strong>1 puluhan ditukar menjadi 10 satuan</strong> saat bilangan yang dikurangi tidak cukup.
-                </p>
-              </div>
-
-              <div
-                className={`p-4 rounded-2xl border space-y-1.5 transition-colors ${
-                  isDark ? 'bg-[#1F2125] border-white/5' : 'bg-white border-emerald-200/70 shadow-xs'
-                }`}
-              >
-                <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-fun font-black flex items-center justify-center text-xs">
-                  6
-                </div>
-                <h4 className={`font-fun font-bold text-sm ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Pembuktian Mandiri (*Concrete Proof*)
-                </h4>
-                <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                  Siswa mampu membilang sedotan satu per satu di Meja Pembuktian Hasil untuk mengonfirmasi kebenaran jawaban secara konkret.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* 3. Panduan Langkah Demi Langkah Penggunaan Media */}
+          {/* 2. Panduan Langkah Demi Langkah Penggunaan Media */}
           <div
             className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-5 transition-colors ${
               isDark
@@ -310,7 +182,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
               </div>
               <div>
                 <h2 className={`text-lg sm:text-xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  3. Panduan Langkah Demi Langkah Menggunakan Papan Jurang
+                  2. Panduan Langkah Demi Langkah Menggunakan Papan Jurang
                 </h2>
                 <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                   Alur interaksi pembelajaran dari penentuan soal hingga pembuktian hasil
@@ -509,7 +381,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
             </div>
           </div>
 
-          {/* 4. Peran Guru & Siswa */}
+          {/* 3. Peran Guru & Siswa */}
           <div
             className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-4 transition-colors ${
               isDark
@@ -529,7 +401,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
               </div>
               <div>
                 <h2 className={`text-lg sm:text-xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  4. Peran Guru dan Siswa dalam Pembelajaran
+                  3. Peran Guru dan Siswa dalam Pembelajaran
                 </h2>
                 <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                   Panduan integrasi media DIGI JURANG dalam kegiatan belajar mengajar (KBM)
@@ -588,7 +460,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
             </div>
           </div>
 
-          {/* 5. Fitur Interaktif Pendukung */}
+          {/* 4. Fitur Interaktif Pendukung */}
           <div
             className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 border shadow-inner space-y-4 transition-colors ${
               isDark
@@ -608,7 +480,7 @@ export const LearningObjectives: React.FC<LearningObjectivesProps> = ({
               </div>
               <div>
                 <h2 className={`text-lg sm:text-xl font-black font-fun ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  5. Fitur Interaktivitas Pendukung
+                  4. Fitur Interaktivitas Pendukung
                 </h2>
                 <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                   Fitur-fitur yang memaksimalkan kenyamanan pembelajaran di kelas
