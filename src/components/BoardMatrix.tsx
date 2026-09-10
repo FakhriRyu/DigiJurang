@@ -3,7 +3,7 @@ import type { RowValues, PlaceValue, OperationMode, BoardOrientation, ThemeMode 
 import { HeartPocket } from './HeartPocket';
 import { SoalNotepad } from './SoalNotepad';
 import { sound } from '../utils/sound';
-import { RotateCcw, ArrowDown } from 'lucide-react';
+import { RotateCcw, ArrowDown, Info, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface BoardMatrixProps {
   problem1: number;
@@ -97,6 +97,18 @@ export const BoardMatrix: React.FC<BoardMatrixProps> = ({
     row1.puluhan < row2.puluhan &&
     row1.ratusan > 0 &&
     !hasMerged;
+
+  const [showAdditionGuide, setShowAdditionGuide] = useState<boolean>(false);
+
+  // Penjumlahan dengan Menyimpan calculations
+  const rawAddSatuan = row1.satuan + row2.satuan;
+  const carryFromSatuan = Math.floor(rawAddSatuan / 10);
+  const rawAddPuluhan = row1.puluhan + row2.puluhan + carryFromSatuan;
+  const carryFromPuluhan = Math.floor(rawAddPuluhan / 10);
+
+  const isCarryingSatuan = operation === 'addition' && rawAddSatuan >= 10;
+  const isCarryingPuluhan = operation === 'addition' && rawAddPuluhan >= 10;
+  const hasCarrying = isCarryingSatuan || isCarryingPuluhan;
 
   const isLandscape = orientation === 'landscape';
 
@@ -332,19 +344,32 @@ export const BoardMatrix: React.FC<BoardMatrixProps> = ({
           >
             {/* Column Headers (RATUSAN, PULUHAN, SATUAN) */}
             <div className="grid grid-cols-3 gap-1.5 sm:gap-3 text-center">
-              <div className="py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#FB923C] shadow-xs">
+              {/* RATUSAN */}
+              <div className="relative py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#FB923C] shadow-xs flex flex-col items-center justify-center">
                 <span className="font-fun font-black text-[10px] xs:text-xs sm:text-sm text-white uppercase tracking-tight sm:tracking-wider">
                   RATUSAN (100)
                 </span>
+                {isCarryingPuluhan && (
+                  <span className="mt-0.5 px-1.5 py-0.2 rounded-md bg-yellow-300 text-slate-950 font-fun font-black text-[9px] sm:text-[10px] shadow-xs animate-bounce">
+                    ⚡ +{carryFromPuluhan} Simpanan
+                  </span>
+                )}
               </div>
 
-              <div className="py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#FBBF24] shadow-xs">
+              {/* PULUHAN */}
+              <div className="relative py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#FBBF24] shadow-xs flex flex-col items-center justify-center">
                 <span className="font-fun font-black text-[10px] xs:text-xs sm:text-sm text-slate-950 uppercase tracking-tight sm:tracking-wider">
                   PULUHAN (10)
                 </span>
+                {isCarryingSatuan && (
+                  <span className="mt-0.5 px-1.5 py-0.2 rounded-md bg-orange-500 text-white font-fun font-black text-[9px] sm:text-[10px] shadow-xs animate-bounce">
+                    ⚡ +{carryFromSatuan} Simpanan
+                  </span>
+                )}
               </div>
 
-              <div className="py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#B45309] shadow-xs">
+              {/* SATUAN */}
+              <div className="relative py-1 sm:py-1.5 px-1 sm:px-2 rounded-lg sm:rounded-xl bg-[#B45309] shadow-xs flex flex-col items-center justify-center">
                 <span className="font-fun font-black text-[10px] xs:text-xs sm:text-sm text-white uppercase tracking-tight sm:tracking-wider">
                   SATUAN (1)
                 </span>
@@ -614,6 +639,167 @@ export const BoardMatrix: React.FC<BoardMatrixProps> = ({
                 />
               </div>
             </div>
+
+            {/* KETERANGAN PENJUMLAHAN DENGAN MENYIMPAN */}
+            {operation === 'addition' && (
+              <div
+                className={`p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border transition-all space-y-2.5 ${
+                  hasCarrying
+                    ? isDark
+                      ? 'bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/15 border-amber-400/40 shadow-md'
+                      : 'bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border-amber-300 shadow-md'
+                    : isDark
+                    ? 'bg-[#181A1D] border-white/10'
+                    : 'bg-slate-50 border-slate-200'
+                }`}
+              >
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base sm:text-lg">💡</span>
+                    <span className={`font-fun font-black text-xs sm:text-sm ${isDark ? 'text-amber-300' : 'text-amber-900'}`}>
+                      Keterangan: Penjumlahan dengan Menyimpan (*Carrying*)
+                    </span>
+                    {hasCarrying && (
+                      <span className="px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black font-fun text-[9px] sm:text-[10px] animate-pulse">
+                        Menyimpan Terdeteksi!
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      sound.playClick();
+                      setShowAdditionGuide(!showAdditionGuide);
+                    }}
+                    className={`px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-fun font-bold flex items-center gap-1 transition-colors cursor-pointer ${
+                      isDark
+                        ? 'bg-white/10 hover:bg-white/15 text-slate-300'
+                        : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-xs'
+                    }`}
+                  >
+                    <Info className="w-3.5 h-3.5 text-amber-500" />
+                    <span>{showAdditionGuide ? 'Sembunyikan Panduan' : 'Pelajari Panduan'}</span>
+                    {showAdditionGuide ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                  </button>
+                </div>
+
+                {/* Real-time Dynamic Step-by-Step Breakdown if Carrying is active */}
+                {hasCarrying ? (
+                  <div className="space-y-2 pt-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                      {/* Satuan Step */}
+                      <div
+                        className={`p-2.5 rounded-xl border ${
+                          isCarryingSatuan
+                            ? isDark
+                              ? 'bg-yellow-500/20 border-yellow-400/40 text-yellow-200'
+                              : 'bg-yellow-100/90 border-yellow-300 text-yellow-950'
+                            : isDark
+                            ? 'bg-white/5 border-white/5 text-slate-300'
+                            : 'bg-white border-slate-200 text-slate-700'
+                        }`}
+                      >
+                        <div className="font-fun font-black text-[11px] flex items-center justify-between">
+                          <span>1. Kolom Satuan</span>
+                          <span className="font-bold">({row1.satuan} + {row2.satuan} = {rawAddSatuan})</span>
+                        </div>
+                        <p className="text-[10px] sm:text-[11px] leading-tight mt-1">
+                          {isCarryingSatuan ? (
+                            <>
+                              Tulis <strong>{rawAddSatuan % 10}</strong> pada satuan.<br />
+                              <strong className="text-amber-500">Simpan {carryFromSatuan}</strong> ke Puluhan (+10).
+                            </>
+                          ) : (
+                            <>Tulis <strong>{rawAddSatuan}</strong> pada satuan (tidak menyimpan).</>
+                          )}
+                        </p>
+                      </div>
+
+                      {/* Puluhan Step */}
+                      <div
+                        className={`p-2.5 rounded-xl border ${
+                          isCarryingPuluhan
+                            ? isDark
+                              ? 'bg-sky-500/20 border-sky-400/40 text-sky-200'
+                              : 'bg-sky-100/90 border-sky-300 text-sky-950'
+                            : isDark
+                            ? 'bg-white/5 border-white/5 text-slate-300'
+                            : 'bg-white border-slate-200 text-slate-700'
+                        }`}
+                      >
+                        <div className="font-fun font-black text-[11px] flex items-center justify-between">
+                          <span>2. Kolom Puluhan</span>
+                          <span className="font-bold">
+                            ({row1.puluhan} + {row2.puluhan}{carryFromSatuan > 0 ? ` + ${carryFromSatuan}` : ''} = {rawAddPuluhan})
+                          </span>
+                        </div>
+                        <p className="text-[10px] sm:text-[11px] leading-tight mt-1">
+                          {isCarryingPuluhan ? (
+                            <>
+                              Tulis <strong>{rawAddPuluhan % 10}</strong> pada puluhan.<br />
+                              <strong className="text-sky-500">Simpan {carryFromPuluhan}</strong> ke Ratusan (+100).
+                            </>
+                          ) : (
+                            <>Tulis <strong>{rawAddPuluhan}</strong> pada puluhan.</>
+                          )}
+                        </p>
+                      </div>
+
+                      {/* Ratusan Step */}
+                      <div
+                        className={`p-2.5 rounded-xl border ${
+                          isDark ? 'bg-white/5 border-white/5 text-slate-300' : 'bg-white border-slate-200 text-slate-700'
+                        }`}
+                      >
+                        <div className="font-fun font-black text-[11px] flex items-center justify-between">
+                          <span>3. Kolom Ratusan</span>
+                          <span className="font-bold">
+                            ({row1.ratusan} + {row2.ratusan}{carryFromPuluhan > 0 ? ` + ${carryFromPuluhan}` : ''} = {row1.ratusan + row2.ratusan + carryFromPuluhan})
+                          </span>
+                        </div>
+                        <p className="text-[10px] sm:text-[11px] leading-tight mt-1">
+                          Tulis <strong>{row1.ratusan + row2.ratusan + carryFromPuluhan}</strong> pada ratusan.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`p-2 rounded-xl text-center font-fun font-bold text-[11px] border ${
+                        isDark ? 'bg-amber-400/10 text-amber-300 border-amber-400/20' : 'bg-amber-100/60 text-amber-900 border-amber-200'
+                      }`}
+                    >
+                      🧠 <em>"Belakang ditulis pada kotak hasil, depan disimpan ke kolom sebelah kiri."</em>
+                    </div>
+                  </div>
+                ) : (
+                  <p className={`text-[11px] leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Saat ini belum ada angka $\ge 10$ yang disimpan. Jika jumlah sedotan pada suatu kolom mencapai <strong>10 atau lebih</strong>, angka depan otomatis disimpan ke kolom sebelah kiri.
+                  </p>
+                )}
+
+                {/* Collapsible Explanatory Guide */}
+                {showAdditionGuide && (
+                  <div
+                    className={`p-3 rounded-xl border text-xs space-y-2 mt-2 ${
+                      isDark ? 'bg-[#1F2125] border-white/10 text-slate-300' : 'bg-white border-amber-200 text-slate-700'
+                    }`}
+                  >
+                    <div className="font-fun font-black text-xs text-amber-500">
+                      📖 Aturan Menjumlahkan dengan Menyimpan:
+                    </div>
+                    <ol className="list-decimal list-inside space-y-1 text-[11px] leading-relaxed">
+                      <li><strong>1. Jumlahkan Satuan</strong>: Jika $\ge 10$, tulis angka belakang pada hasil satuan dan simpan angka depannya (+1) ke kolom Puluhan.</li>
+                      <li><strong>2. Jumlahkan Puluhan</strong>: Jumlahkan angka puluhan ditambah angka simpanan. Jika $\ge 10$, simpan (+1) ke kolom Ratusan.</li>
+                      <li><strong>3. Jumlahkan Ratusan</strong>: Jumlahkan angka ratusan ditambah angka simpanan.</li>
+                    </ol>
+                    <div className="pt-1 text-[10px] italic text-slate-400">
+                      Contoh: <strong>268 + 157 = 425</strong> (8+7=15 simpan 1, 6+5+1=12 simpan 1, 2+1+1=4).
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 

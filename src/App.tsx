@@ -157,9 +157,15 @@ export const App: React.FC = () => {
       let finalS = 0;
 
       if (operation === 'addition') {
-        finalR = row1.ratusan + row2.ratusan;
-        finalP = row1.puluhan + row2.puluhan;
-        finalS = row1.satuan + row2.satuan;
+        const rawS = row1.satuan + row2.satuan;
+        const carryToP = Math.floor(rawS / 10);
+        finalS = rawS % 10;
+
+        const rawP = row1.puluhan + row2.puluhan + carryToP;
+        const carryToR = Math.floor(rawP / 10);
+        finalP = rawP % 10;
+
+        finalR = row1.ratusan + row2.ratusan + carryToR;
       } else {
         const val1 = row1.ratusan * 100 + row1.puluhan * 10 + row1.satuan;
         const val2 = row2.ratusan * 100 + row2.puluhan * 10 + row2.satuan;
